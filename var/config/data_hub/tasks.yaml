@@ -1,0 +1,107 @@
+pimcore_data_hub:
+    configurations:
+        tasks:
+            general:
+                type: dataImporterDataObject
+                name: tasks
+                description: ''
+                group: ''
+                active: false
+                path: null
+                modificationDate: 1699916361
+                createDate: 1699737196
+            loaderConfig:
+                type: http
+                settings:
+                    schema: 'https://'
+                    url: jsonplaceholder.typicode.com/todos/
+            interpreterConfig:
+                type: json
+            resolverConfig:
+                elementType: dataObject
+                dataObjectClassId: '4'
+                loadingStrategy:
+                    type: attribute
+                    settings:
+                        dataSourceIndex: id
+                        attributeName: TaskId
+                        language: ''
+                        includeUnpublished: true
+                createLocationStrategy:
+                    type: staticPath
+                    settings:
+                        path: /task
+                locationUpdateStrategy:
+                    type: staticPath
+                    settings:
+                        path: /task
+                publishingStrategy:
+                    type: noChangeUnpublishNew
+            processingConfig:
+                executionType: sequential
+                idDataIndex: id
+                cleanup:
+                    strategy: unpublish
+            mappingConfig:
+                -
+                    label: title
+                    dataSourceIndex:
+                        - title
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: Title
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: taslId
+                    dataSourceIndex:
+                        - id
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: TaskId
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: userId
+                    dataSourceIndex:
+                        - userId
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: UserId
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: completed
+                    dataSourceIndex:
+                        - completed
+                    transformationResultType: boolean
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: Completed
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline:
+                        -
+                            type: boolean
+            executionConfig:
+                scheduleType: recurring
+                cronDefinition: ''
+                scheduledAt: ''
+            permissions:
+                user: {  }
+                role: {  }
+            workspaces: {  }

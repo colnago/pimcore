@@ -1,0 +1,26 @@
+pimcore:
+    objects:
+        select_options:
+            definitions:
+                RunwaysTypes:
+                    id: RunwaysTypes
+                    group: ''
+                    useTraits: ''
+                    implementsInterfaces: ''
+                    selectOptions:
+                        -
+                            value: ASP
+                            label: Asphalt
+                            name: ''
+                        -
+                            value: COP
+                            label: Composite
+                            name: ''
+                        -
+                            value: ICE
+                            label: Ice
+                            name: ''
+                        -
+                            value: U
+                            label: 'Unknown surface'
+                            name: ''

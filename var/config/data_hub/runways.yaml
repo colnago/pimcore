@@ -1,0 +1,191 @@
+pimcore_data_hub:
+    configurations:
+        runways:
+            general:
+                type: dataImporterDataObject
+                name: runways
+                description: ''
+                group: ''
+                active: false
+                path: null
+                modificationDate: 1699915255
+                createDate: 1699803525
+            loaderConfig:
+                type: asset
+                settings:
+                    assetPath: /runways.csv
+            interpreterConfig:
+                type: csv
+                settings:
+                    skipFirstRow: true
+                    delimiter: ','
+                    enclosure: '"'
+                    escape: \
+            resolverConfig:
+                elementType: dataObject
+                dataObjectClassId: '5'
+                loadingStrategy:
+                    type: attribute
+                    settings:
+                        dataSourceIndex: '0'
+                        attributeName: ident
+                        language: ''
+                createLocationStrategy:
+                    type: staticPath
+                    settings:
+                        path: /runways
+                locationUpdateStrategy:
+                    type: staticPath
+                    settings:
+                        path: /runways
+                publishingStrategy:
+                    type: noChangeUnpublishNew
+            processingConfig:
+                executionType: sequential
+                idDataIndex: '0'
+                cleanup:
+                    strategy: unpublish
+            mappingConfig:
+                -
+                    label: ref
+                    dataSourceIndex:
+                        - '1'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: AirportRef
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: airportIdent
+                    dataSourceIndex:
+                        - '2'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: AirportIdent
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: surface
+                    dataSourceIndex:
+                        - '5'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: surface
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: lighted
+                    dataSourceIndex:
+                        - '6'
+                    transformationResultType: boolean
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: lighted
+                            language: ''
+                            writeIfTargetIsNotEmpty: false
+                            writeIfSourceIsEmpty: false
+                    transformationPipeline:
+                        -
+                            type: boolean
+                -
+                    label: closed
+                    dataSourceIndex:
+                        - '7'
+                    transformationResultType: boolean
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: closed
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline:
+                        -
+                            type: boolean
+                -
+                    label: airport
+                    dataSourceIndex:
+                        - '2'
+                    settings:
+                        loadStrategy: attribute
+                        attributeDataObjectClassId: '1'
+                        attributeName: ident
+                        attributeLanguage: ''
+                        loadUnpublished: 'on'
+                    transformationResultType: dataObject
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: Airport
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline:
+                        -
+                            settings:
+                                loadStrategy: attribute
+                                attributeDataObjectClassId: '1'
+                                attributeName: ident
+                                attributeLanguage: ''
+                                loadUnpublished: 'on'
+                            type: loadDataObject
+                -
+                    label: ident
+                    dataSourceIndex:
+                        - '0'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: ident
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: langth
+                    dataSourceIndex:
+                        - '3'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: Length
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: width
+                    dataSourceIndex:
+                        - '4'
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: Width
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+            executionConfig:
+                scheduleType: recurring
+                cronDefinition: ''
+                scheduledAt: ''
+            permissions:
+                user: {  }
+                role: {  }
+            workspaces: {  }
